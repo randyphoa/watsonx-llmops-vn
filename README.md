@@ -1,1 +1,0 @@
-# watsonx-llmops-vn
