@@ -1,61 +1,61 @@
 # Prompt engineering
 
 ### 1.0 LLM Foundations
-Sebelum kita mulai mengeksplorasi kemampuan watsonx.ai, pertama-tama kita perlu mengetahui tentang cara kerja Model Bahasa Besar (LLM), dan bagaimana kita dapat menyesuaikan model dan parameter untuk mengubah output yang dihasilkan. Mengetahui hal tersebut dapat membantu kita untuk lebih efisien menggunakan LLM model.
+Before we start exploring the capabilities of watsonx.ai, we first need to know about how Large Language Models (LLM) work, and how we can adjust the model and parameters to change the resulting output. Knowing this can help us to more efficiently use the LLM model.
 
 
 <img width="1722" alt="image" src="https://github.com/Client-Engineering-Indonesia/watsonx-incubation-2024/assets/20800128/cb9b4f08-ccf3-4591-a1e2-80f051620196">
 
 
-Saat Anda membuka watsonx.ai, ini adalah tampilan yang akan ditunjukkan kepada Anda. Area teks tengah yang besar disebut Prompt Lab, atau Prompt Builder jika Anda memilih tampilan lebih lanjut dengan mengklik kotak centang di kiri atas. Di sisi kanan adalah parameter dari model yang dapat Anda gunakan untuk memilih guna mengoptimalkan respons model terhadap permintaan atau prompt Anda. Dan di kiri bawah, terdapat ringkasan jumlah token yang digunakan oleh prompt Anda selama eksekusi.
+When you open watsonx.ai, this is what you will be shown. The large central text area is called Prompt Lab, or Prompt Builder if you choose more advanced views by clicking the checkbox in the top left. On the right side are the parameters of the model that you can use to select to optimize the model's response to your request or prompt. And at the bottom left, there is a summary of the number of tokens used by your prompt during execution.
 
 ### 1.1 Tokens
 Each time you enter a prompt, your “input tokens” and “generated tokens” will update. Tokens are an important concept to understand as they constrain the performance of your model plus determine the cost of using models. As you will learn throughout the Labs, tokens are not a 1:1 match with words in natural language, but on average, one token is equal to 4 characters. Before sending your prompt to the model, the prompt's text is Tokenized or broken into smaller subsets of characters better understood by a model.
 
 It is important to monitor your token usage to know how much information you are feeding into the model with each prompt, as well as how much text is generated for you. Depending on the model selected in Prompt Builder, you will see a max of 2048 or 4096 tokens. Keep in mind that the more expressive you are with your prompt instructions, the less room the model has to respond back to you.
 
-Setiap kali Anda melakukan prompting, “input tokens” dan “generated tokens” akan diperbarui. Token adalah konsep penting untuk dipahami karena membatasi performa model Anda dan menentukan biaya penggunaan model. Seperti yang akan Anda pelajari di melalui Lab, tokens bukanlah 1:1 dengan kata-kata yang ada dalam sebuah kalimat, namun rata-rata, satu token sama dengan 4 karakter. Sebelum mengirimkan perintah Anda ke model, teks perintah tersebut di-Tokenized atau dipecah menjadi subkumpulan karakter yang lebih kecil yang lebih mudah dipahami oleh model.
+Every time you prompt, “input tokens” and “generated tokens” will be updated. Tokens are an important concept to understand because they limit the performance of your model and determine the cost of using the model. As you will learn in the Lab, tokens are not 1:1 with the words in a sentence, but on average, one token equals 4 characters. Before sending your command to the model, the command text is Tokenized or broken down into smaller subsets of characters that are easier for the model to understand.
 
-Penting untuk memantau penggunaan token Anda untuk mengetahui berapa banyak informasi yang Anda masukkan ke dalam model dalam setiap perintah, serta berapa banyak teks yang dihasilkan untuk Anda. Bergantung pada model yang dipilih di Prompt Builder, Anda akan melihat maks 2048 atau 4096 token. Ingatlah bahwa semakin ekspresif Anda dalam memberikan instruksi, semakin sedikit "ruang" yang dimiliki model untuk merespons Anda.
+It's important to monitor your token usage to know how much information you're feeding into the model in each command, as well as how much text it's generating for you. Depending on the model selected in Prompt Builder, you will see a max of 2048 or 4096 tokens. Remember that the more expressive you are in giving instructions, the less "room" the model has to respond to you.
 
 ### 1.2 Everything is text completion
-watsonx.ai bukan chatbot interface, terkadang hasil prompt tidak memberikan apa yang diharapkan, tapi kita dapat memberikan instruksi ke LLM model untuk melakukan sejumlah hal dengan cara yang lebih tepat. Misalnya, bagaimana jika kita meminta Watsonx.ai untuk: Sebutkan langkah-langkah memulai bisnis online
+watsonx.ai is not a chatbot interface, sometimes the prompt results do not provide what is expected, but we can give instructions to the LLM model to do some things in a more appropriate way. For example, what if we ask Watsonx.ai to: List the steps for starting an online business
 
 <img width="1722" alt="image" src="https://github.com/Client-Engineering-Indonesia/watsonx-incubation-2024/assets/20800128/7e70cb01-9e2f-42ff-9a7f-eef7dd573fb5">
 
-Jawaban di atas bukanlah apa yang kita harapkan.
+The answer above is not what we expected.
 
 ### 1.3 Provide an example as guidance (or Single Shot Prompting)
-Untuk mendapatkan respons dengan kualitas yang lebih baik, berikan contoh jenis respons yang Anda inginkan. Dalam istilah teknis, ini disebut Single Shot Prompting.
+To get better quality responses, provide examples of the type of response you want. In technical terms, this is called Single Shot Prompting.
 
 
 <img width="1722" alt="image" src="https://github.com/Client-Engineering-Indonesia/watsonx-incubation-2024/assets/20800128/476a38eb-d70f-482e-9a11-b59c5271dce9">
 
-**Note:** Gambar berikut menunjukkan hasil dari watsonx.ai. Teks berwarna abu-abu adalah contoh input yang dapat berikan untuk model. Teks yang di-highlight biru adalah respons dari model.
+**Note:** The following image shows the results from watsonx.ai. The gray text is an example of input that can be provided to the model. The text highlighted in blue is the response from the model.
 
-Seperti yang Anda lihat, memberikan satu contoh sebelum memberikan perintah ke LLM disebut dengan Single Shot Prompting, namun menambahkan lebih banyak contoh ke dalam prompt juga lumrah untuk dilakukan. Umumnya, memberikan contoh dalam jumlah yang lebih dari satu disebut sebagai “Few Shot Prompting” dan merupakan cara yang ampuh untuk memastikan Anda mendapatkan hasil yang spesifik.
+As you can see, providing one example before giving a command to the LLM is called Single Shot Prompting, but adding more examples to the prompt is also common. Generally, providing more than one example is called “Few Shot Prompting” and is a powerful way to ensure you get specific results.
 
-Gunakan teks berikut ini, untuk mencoba Prompt Builder:
+Use the following text, to try Prompt Builder:
 
 ```
-Sebutkan langkah-langkah memulai bisnis online
-1. Pilih produk atau jasa yang akan Anda jual.
-2. Lakukan riset pasar.
-3. Buat rencana bisnis.
-4. Dapatkan izin dan sertifikasi yang diperlukan.
-5. Buat situs web atau toko online.
-6. Promosikan bisnis Anda.
-7. Layanan pelanggan yang baik.
+Here are the steps to start an online business translated into English:
 
-Sebutkan langkah-langkah memulai bisnis kuliner
+1.Choose the product or service you will sell.
+2.Conduct market research.
+3.Create a business plan.
+4.Obtain necessary permits and certifications.
+5.Create a website or online store.
+6.Promote your business.
+7.Provide good customer service.
+Write down a step to create a culinary business
 ```
 
 ### 1.4 Include descriptive details
-Semakin detail instruksi yang diberikan, semakin baik:
-- Content
+The more detailed the instructions are, the better:
+- Contents
 - Style
 - Length
-dari response yang diberikan
+from the response given
 
 <img width="1722" alt="image" src="https://github.com/Client-Engineering-Indonesia/watsonx-incubation-2024/assets/20800128/776e05ba-1ad6-4da3-b613-5b6007e73e79">
 
@@ -63,32 +63,32 @@ dari response yang diberikan
 ## Model Parameter
 
 ### 2.0 Adjusting Model Behavior
-Perubahan pertama yang bisa kita lakukan adalah model (LLM) apa yang kita gunakan untuk mengeksekusi prompt kita. Ini adalah salah satu perubahan terbesar yang dapat Anda lakukan, karena model tertentu dibuat lebih baik untuk tugas tertentu. Latihan selanjutnya di lab ini akan meminta Anda mengubah model yang digunakan jika ingin menjawab beberapa pertanyaan yang lebih menantang.
-
+The first change we can make is what model (LLM) we use to execute our prompt. This is one of the biggest changes you can make, as certain models are made better for certain tasks. Later exercises in this lab will ask you to change the model you use if you want to answer some of the more challenging questions.
 Secara umum, beberapa model bekerja lebih baik dengan peringkasan, kata kunci, dan semantik, sementara model lainnya bekerja lebih baik dengan teks terstruktur seperti HTML, markdown, atau JSON. Cara terbaik untuk mengetahui model mana yang cocok untuk kasus penggunaan Anda adalah dengan mengujinya, namun penting untuk mengetahui bahwa pilihan model dapat membuat perbedaan besar!
 
-watsonx.ai juga menyediakan beberapa parameter untuk mengonfigurasi cara LLM merespons permintaan. Memilih parameter yang benar seringkali lebih merupakan seni daripada sains. Menginvestasikan waktu untuk memahami prompting dan kemudian mengubah parameter dari model dapat membantu menghasilkan respons yang lebih baik.
+watsonx.ai also provides several parameters to configure how LLM responds to requests. Choosing the correct parameters is often more art than science. Investing time to understand the prompting and then changing the parameters of the model can help generate better responses.
 
-Coba berkesperimen dalam pengaturan parameter dengan menggunakan teks berikut:
+Try experimenting with parameter settings using the following text:
 
 ```
-Sebutkan langkah-langkah memulai bisnis online
-1. Pilih produk atau jasa yang akan Anda jual.
-2. Lakukan riset pasar.
-3. Buat rencana bisnis.
-4. Dapatkan izin dan sertifikasi yang diperlukan.
-5. Buat situs web atau toko online.
-6. Promosikan bisnis Anda.
-7. Layanan pelanggan yang baik.
+Here are the steps to start an online business translated into English:
 
-Sebutkan langkah-langkah memulai bisnis kuliner
+1.Choose the product or service you will sell.
+2.Conduct market research.
+3.Create a business plan.
+4.Obtain necessary permits and certifications.
+5.Create a website or online store.
+6.Promote your business.
+7.Provide good customer service.
+
+Write down a step to create a culinary business
 ```
 
 ### 2.1 Set the min and max tokens
 
-Jika Anda merasa teks yang dihasilkan terlalu pendek atau panjang, coba sesuaikan parameter yang mengontrol jumlah token baru:
-- Parameter __Min new tokens__ mengontrol jumlah minimum token (~kata) dari respons yang dihasilkan
-- Parameter __Max new tokens__ mengontrol jumlah maksimum token (~kata) dari respons yang dihasilkan
+If you feel the resulting text is too short or long, try adjusting the parameters that control the number of new tokens:
+- The __Min new tokens__ parameter controls the minimum number of tokens (~words) of the generated response
+- The __Max new tokens__ parameter controls the maximum number of tokens (~words) of the generated response
 
 
 <img width="1722" alt="image" src="https://github.com/Client-Engineering-Indonesia/watsonx-incubation-2024/assets/20800128/d4171956-a448-4839-89b5-4fe1e44a28c1">
@@ -96,22 +96,21 @@ Jika Anda merasa teks yang dihasilkan terlalu pendek atau panjang, coba sesuaika
 
 ### 2.2 Specify stop sequences
 
-Jika Anda menentukan _stop sequence_, output akan otomatis berhenti ketika salah satu _stop sequence_ muncul pada keluaran yang dihasilkan.
-__double enter__ biasa ditambahkan mencegah model mengenerate ulang output dikarenakan jumlah token yang dihasilkan belum mencapai _max tokens_
-
+If you specify a _stop sequence_, the output will automatically stop when one of the _stop sequences_ appears in the resulting output.
+__double enter__ is usually added to prevent the model from regenerating the output because the number of tokens generated has not reached _max tokens_
 
 ### 2.3 Adjust decoding parameters
 
-Jika responsnya terlalu umum atau menyimpang, pertimbangkan untuk mengatur parameter decoding. Atau ketika response mungkin kurang kreatif, pengaturan juga ada baiknya dilakukan.
+If the response is too general or distorted, consider adjusting the decoding parameters. Or when the response may be less creative, it is also a good idea to make adjustments.
 
 `Decoding adalah proses menentukan urutan keluaran berdasarkan urutan masukan`
 
-- `Greedy decoding` memilih kata dengan probabilitas tertinggi pada setiap langkah proses decoding.
-- `Sampling decoding` memilih kata-kata dari distribusi probabilitas di setiap langkah
-- `Temperatur` mengacu pada pemilihan kata dengan probabilitas tinggi atau rendah. Nilai temperature yang lebih tinggi menyebabkan lebih banyak variabilitas.
-- Top-p (pengambilan sampel inti) mengacu pada pemilihan kumpulan kata terkecil yang probabilitas kumulatifnya melebihi p.
-- Top-k mengacu pada pemilihan k-kata dengan probabilitas tertinggi di setiap langkah. Nilai yang lebih tinggi menyebabkan lebih banyak variabilitas.
-Keuntungan dari penguraian Greedy decosing adalah Anda akan melihat hasil yang dapat direproduksi. Ini dapat berguna saat melakukan pengetesan. Menyetel temperature=0 dalam pendekatan sampling decoding memberikan variasi yang sama seperti Greedy decoding.
+- `Greedy decoding` selects the word with the highest probability at each step of the decoding process.
+- `Sampling decoding` selects words from a probability distribution at each step
+- `Temperature` refers to selecting words with high or low probability. Higher temperature values ​​cause more variability.
+- Top-p (core sampling) refers to selecting the smallest set of words whose cumulative probability exceeds p.
+- Top-k refers to selecting the k-words with the highest probability at each step. Higher values ​​cause more variability.
+The advantage of Greedy decosing is that you will see reproducible results. This can be useful when testing. Setting temperature=0 in the sampling decoding approach gives the same variation as Greedy decoding.
 
 
 <img width="1722" alt="image" src="https://github.com/Client-Engineering-Indonesia/watsonx-incubation-2024/assets/20800128/b63b750c-e121-45ce-84c1-d34553d419f1">
@@ -119,39 +118,39 @@ Keuntungan dari penguraian Greedy decosing adalah Anda akan melihat hasil yang d
 
 ### 2.4 Add a repetition penalty
 
-Terkadang, Anda akan melihat teks yang diulang-ulang. Menaikkan temperature terkadang dapat menyelesaikan masalah. Namun, ketika teks masih berulang bahkan dengan dengan pengaturan temperature yang lebih tinggi, Anda dapat mencoba menambahkan _repetition penality_. Semakin tinggi nilai penalty-nya, semakin kecil kemungkinan terdapatnya teks berulang.
+Sometimes, you will see text that is repeated over and over again. Raising the temperature can sometimes solve the problem. However, when the text still repeats itself even with a higher temperature setting, you can try adding repetition penality. The higher the penalty value, the smaller the possibility of repeated text.
 
 
 ### 2.5 Excellent 3rd party blog post on model parameters
 
-Uraian di atas memberikan pengenalan yang cukup baik tentang parameter apa saja yang model. Namun Anda harus membaca [artikel ini](https://txt.cohere.com/llm-parameters-best-outputs-language-ai) tentang parameter yang dimiliki model karena dapat memberikan contoh tambahan yang sangat baik tentang bagaimana parameter model bekerja ditambah ada ilustrasi yang dapat membantu Anda lebih memahami konsepnya. Semakin baik Anda memahami parameter model, semakin anda terhindar dari frustrasi dan semakin mudah untuk menyesuaikan model agar berfungsi sesuai kebutuhan Anda.
+The description above provides a fairly good introduction to what parameters the model has. But you have to read [artikel ini](https://txt.cohere.com/llm-parameters-best-outputs-language-ai) about the parameters that the model has as it can provide excellent additional examples of how the model parameters work plus there are illustrations that can help you better understand the concept. The better you understand the model parameters, the more frustration you will avoid and the easier it will be to adjust the model to work according to your needs.
 
 
 # General advice
 
 ### 3.1 Try different models
 
-Jika prompt anda tidak menghasilkan apa yang anda inginkan, terutama apabila prompt dibuat dalam Bahasa Indonesia, cobalah ganti pilihan model yang digunakan
+If your prompt doesn't produce what you want, especially if the prompt is written in Indonesian, try changing the model option used
 ![img-31-models](https://github.com/Client-Engineering-Indonesia/watsonx-incubation-program-indonesia/blob/main/Lab%201%20-%20Using%20Prompt%20Lab%20for%20Prompt%20Engineering/Images/img-31-models.png?raw=true)
 
 
 ### 3.2 Check your use case
 
-LLM memiliki potensi besar, tetapi LLM tidak memiliki logika, pengetahuan, dan domain expert. Beberapa kasus lebih cocok dibandingkan dengan kasus yang lain: LLM unggul dalam tugas-tugas yang melibatkan _text generation_ atau mengenali kesamaan pattern dan mentransformasikan input teks yang diberikan.
+LLM has great potential, but LLM lacks logic, knowledge and domain expertise. Some cases are better suited than others: LLM excels at tasks involving _text generation_ or recognizing similar patterns and transforming given text input.
 
-Jika _prompt_ yang diberikan sudah menggunakan _best pracatice_ yang dibahas di sini, namun tetap tidak mendapatkan hasil yang baik dari model mana pun, mungkin saja kasus yang dipilih merupakan hal yang tidak dapat ditangani dengan baik oleh LLM.
+If the _prompt_ given already uses the _best practice_ discussed here, but still does not get good results from any model, it is possible that the case chosen is something that cannot be handled well by LLM.
 
-Misalnya, meskipun kita bisa mendapatkan hasil yang cukup layak untuk aritmatika sederhana, LLM umumnya tidak bisa mengerjakan matematika dengan baik: [Researchers find that large language models struggle with math](https://venturebeat.com/business/researchers-find-that-large-language-models-struggle-with-math/)
+For example, although we can get pretty decent results for simple arithmetic, LLMs generally don't do math very well: [Researchers find that large language models struggle with math](https://venturebeat.com/business/researchers-find-that-large-language-models-struggle-with-math/)
 
 ### 4.0 Balancing intelligence and security
 
-Dengan kecerdasan buatan yang hebat, terdapat risiko keamanan yang lebih tinggi. Solusi seperti ChatGPT adalah Very large Language Model (VLLM) dengan 175 miliar parameter. Mereka dibuat oleh tim OpenAI menggunakan kumpulan data Obrolan non-publik sebagai tambahan dan kumpulan data Reinforcement Learning Human Feedback (RLHF). ChatGPT adalah LLM yang dibuat seperti chatbot.
+With great artificial intelligence comes higher security risks. Solutions like ChatGPT are Very large Language Models (VLLM) with 175 billion parameters. They were created by the OpenAI team using additional non-public Chat datasets and the Reinforcement Learning Human Feedback (RLHF) dataset. ChatGPT is an LLM built like a chatbot.
 
-Di watsonx.ai, kami berinteraksi langsung dengan LLM yang lebih kecil (3-20 miliar parameter). Ini adalah pilihan bijak dari sudut pandang keamanan. _prompt injection_ merupakan risiko besar bagi penggunaan LLM di perusahaan. Dengan menggunakan _prompt injection_ , hacker akan membuat perintah rumit yang menyebabkan LLM seperti ChatGPT mengabaikan/melewati protokol keamanan dan mengungkapkan informasi sensitif perusahaan. Bayangkan saja Anda seorang hacker. Model manakah yang akan Anda pilih sebagai target _prompt injection_ ? ChatGPT OpenAI dengan 175 miliar parameter yang mampu melakukan ribuan tugas atau model parameter 3 miliar yang lebih kecil dan lebih fokus sangat disesuaikan untuk beberapa tugas terisolasi? Manakah yang memiliki _attack surface_ yang lebih luas untuk terjadinya _prompt re-engineering_?
+At watsonx.ai, we interact directly with smaller LLMs (3-20 billion parameters). This is a wise choice from a security perspective. _prompt injection_ is a big risk for the use of LLM in companies. By using _prompt injection_ , hackers will create complex commands that cause LLMs such as ChatGPT to ignore/bypass security protocols and reveal sensitive company information. Just imagine you are a hacker. Which model would you choose as the target for _prompt injection_? OpenAI's ChatGPT with 175 billion parameters capable of performing thousands of tasks or a smaller, more focused 3 billion parameter model highly customized for a few isolated tasks? Which one has a wider attack surface for prompt re-engineering to occur?
 
-Model yang lebih kecil dan sederhana di watsonx.ai lebih menantang bagi calon hacker. Menggunakan banyak model kecil dibandingkan satu model besar seperti ChatGPT menciptakan distribusi _sensitive entry points_ yang lebih luas. Setiap model bahasa yang kecil jauh lebih sulit untuk dimanipulasi karena fungsinya yang terbatas dan _prompt engineering_ tingkat tinggi yang diperlukan untuk melakukan tugas utamanya. Mereka tidak memiliki berbagai fungsi seperti ChatGPT. Seperti yang diketahui para programmer, kehilangan semua sumber daya Anda hanya dengan satu kegagalan adalah tindakan yang tidak bijaksana. Jauh lebih baik untuk menguraikan solusi Anda demi keamanan, skalabilitas, dan kontrol.
+The smaller, simpler model at watsonx.ai is more challenging for would-be hackers. Using many small models rather than one large model like ChatGPT creates a wider distribution of _sensitive entry points_. Each small language model is much more difficult to manipulate because of its limited functionality and the high level of engineering required to perform its main tasks. They do not have various functions like ChatGPT. As programmers know, losing all your resources with just one failure is unwise. It's much better to decompose your solution for security, scalability, and control.
 
-Untuk keamanan, lebih kecil lebih baik. Selain manfaat keamanan, terdapat peningkatan komputasi dengan menggunakan model yang lebih kecil dan berbobot lebih ringan. Mari kita lebih banyak berinteraksi dengan LLM watsonx.ai untuk lebih memahami dan mempelajari cara membuat mereka merespons sesuai kebutuhan kita.
+For safety, smaller is better. In addition to the security benefits, there are computational improvements from using smaller, lighter weight models. Let's interact more with LLM watsonx.ai to better understand and learn how to get them to respond according to our needs.
 
 ### Further Reading
 - [OpenAI prompt intro](https://platform.openai.com/docs/guides/gpt-best-practices)
